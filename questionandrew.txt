@@ -1,0 +1,8 @@
+How to build my app? Slider+Spinner linked together
+I will need redux!!!!
+
+
+the table? Normal js or react?
+
+material or polymer?
+
