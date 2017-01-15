@@ -55,13 +55,21 @@ const Actions = {
   INTEREST_THEN_CHANGE: 'INTEREST_THEN_CHANGE',
 };
 //  Action Creators
-const principal_change = createAction(Actions.PRINCIPAL_CHANGE);
+export const principal_change = createAction(Actions.PRINCIPAL_CHANGE);
 const type_change = createAction(Actions.TYPE_CHANGE);
 const inital_period_change = createAction(Actions.INITIAL_PERIOD_CHANGE);
 const mortgage_term_change = createAction(Actions.MORTGAGE_TERM_CHANGE);
 const interest_initial_change = createAction(Actions.INTEREST_INITIAL_CHANGE);
 const interest_then_change = createAction(Actions.INTEREST_THEN_CHANGE);
 //  Reducers
+//
+//
+export function principalChange(payload) {
+  return {
+    type: 'PRINCIPAL_CHANGE',
+    payload
+  }
+}
 
 const financeReducer = (state = InitialState.finance, action) => {
   let Principal,Type, Initial_Period, Mortgage_Term, Interest_Initial, Interest_Then;
@@ -74,7 +82,8 @@ const financeReducer = (state = InitialState.finance, action) => {
 
     switch (action.type) {
              case Actions.PRINCIPAL_CHANGE:
-          Principal =  action.payload;
+          console.log('this was called', action.payload);
+        Principal =  action.payload;
         break;
       case Actions.TYPE_CHANGE:
              Type =  action.payload;
@@ -228,7 +237,6 @@ export default class TabsExampleSwipeable extends React.Component {
   };
 
   render() {
-    console.log('props', this.props.Monthly_Cost_Initial);
     return (
       <MuiThemeProvider>
         <div>
