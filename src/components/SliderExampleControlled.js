@@ -1,15 +1,15 @@
 import React, {Component} from 'react';
 import Slider from 'material-ui/Slider';
-
+import { principalChange } from '../actions/actions'
 /**
  * The slider bar can have a set minimum and maximum, and the value can be
  * obtained through the value parameter fired on an onChange event.
  */
-import { principalChange } from './';
-import { bindActionCreators  } from 'redux'
-import { connect } from 'react-redux';
 
-//principal_change
+import { bindActionCreators  } from 'redux'
+import { connect } from 'react-redux'
+
+
 class SliderExampleControlled extends Component {
   constructor(props) {
     super(props);
