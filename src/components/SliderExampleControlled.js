@@ -10,12 +10,13 @@ import { bindActionCreators  } from 'redux'
 import { connect } from 'react-redux'
 
 
+
 class SliderExampleControlled extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstSlider: 0.5,
-      secondSlider: 50,
+      firstSlider:50000,
+      secondSlider:15,
     };
   }
 
@@ -32,23 +33,26 @@ class SliderExampleControlled extends Component {
     return (
       <div>
         <Slider
-          min={0}
+          min={this.props.Min_Principal}
           max={1000000}
           step={10000}
-          defaultValue={100000}
+          //defaultValue={100000}
           value={this.state.firstSlider}
           onChange={this.handleFirstSlider}
         />
         <p>
-          <span>{'The value of this slider is: '}</span>
-          <span>{this.state.firstSlider}</span>
-          <span>{' from a range of 0 to 100000 inclusive'}</span>
+
+        <span>{'The value of this slider is: '}</span>
+        <span>{this.state.firstSlider}</span>
+        <span>{' from a range of 0 to 100000 inclusive'}</span>
+        <span>{'My minimum is haha : '}</span>
+      <span>{this.props.Min_Principal}</span>
         </p>
         <Slider
           min={0}
           max={100}
           step={1}
-          defaultValue={50}
+          //defaultValue={50}
           value={this.state.secondSlider}
           onChange={this.handleSecondSlider}
         />
@@ -68,4 +72,10 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default connect(null, mapDispatchToProps)(SliderExampleControlled)
+function mapStateToProps(state) {
+    const Min_Principal = state.Static_Data.Min_Principal;
+  return {
+  Min_Principal: Min_Principal,
+  }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(SliderExampleControlled)

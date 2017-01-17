@@ -129,14 +129,14 @@ const financeReducer = (state = InitialState.finance, action) => {
   return { ...state,  Principal,Type, Initial_Period, Mortgage_Term, Interest_Initial, Interest_Then, Monthly_Cost_Initial, Monthly_Cost_Then, Principal_Remaining, Yearly_Interest,Yearly_Capital }
 }
  
-const chargesReducer = (state = InitialState.charges, action) => {
+const Static_DataReducer = (state = InitialState.Static_Data, action) => {
     // Coming soon...
       return state
 }
 //  Bootstrapping
 const reducer = combineReducers({
     finance: financeReducer,
-    charges: chargesReducer,
+    Static_Data: Static_DataReducer,
 })
 
 export default reducer
