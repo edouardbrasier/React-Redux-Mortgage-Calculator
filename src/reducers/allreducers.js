@@ -12,29 +12,31 @@ const financeReducer = (state = InitialState.finance, action) => {
   Interest_Initial= state.Interest_Initial
   Interest_Then= state.Interest_Then
 
-    switch (action.type) {
-             case Actions.PRINCIPAL_CHANGE:
-          console.log('this was called', action.payload)
-        Principal =  action.payload
-        break
-      case Actions.TYPE_CHANGE:
-             Type =  action.payload
-        break
-      case Actions.INITIAL_PERIOD_CHANGE:
-             Initial_Period =  action.payload
-        break
-      case Actions.MORTGAGE_TERM_CHANGE:
-             Mortgage_Term =  action.payload
-        break
-      case Actions.INTEREST_INITIAL_CHANGE:
-             Interest_Initial =  action.payload
-        break
-      case Actions.INTEREST_INITIAL_Then:
-             Interest_Then =  action.payload
-        break
-      default:
-    }
+  switch (action.type) {
+    case Actions.PRINCIPAL_CHANGE:
+    //console.log('this was called', action.payload)
+    Principal = action.payload
+    break
+    case Actions.TYPE_CHANGE:
+    Type =  action.payload
+    break
+    case Actions.INITIAL_PERIOD_CHANGE:
+    Initial_Period =  action.payload
+    break
+    case Actions.MORTGAGE_TERM_CHANGE:
+    Mortgage_Term =  action.payload
+    break
+    case Actions.INTEREST_INITIAL_CHANGE:
+    Interest_Initial =  action.payload
+    break
+    case Actions.INTEREST_INITIAL_Then:
+    Interest_Then =  action.payload
+    break
+    default:
+  }
 
+  Principal = Math.min (Principal,state.Static_Data.Max_Principal)
+  Principal = Math.max (Principal,state.Static_Data.Min_Principal)
   let Monthly_Cost_Initial_temp1,Monthly_Cost_Initial_temp2,Monthly_Cost_Then_temp1,Monthly_Cost_Then_temp2
   let Monthly_Cost_Initial,Monthly_Cost_Then
 
@@ -128,15 +130,15 @@ const financeReducer = (state = InitialState.finance, action) => {
 
   return { ...state,  Principal,Type, Initial_Period, Mortgage_Term, Interest_Initial, Interest_Then, Monthly_Cost_Initial, Monthly_Cost_Then, Principal_Remaining, Yearly_Interest,Yearly_Capital }
 }
- 
-const Static_DataReducer = (state = InitialState.Static_Data, action) => {
-    // Coming soon...
-      return state
+
+const chargesReducer = (state = InitialState.charges, action) => {
+  // Coming soon...
+  return state
 }
 //  Bootstrapping
 const reducer = combineReducers({
-    finance: financeReducer,
-    Static_Data: Static_DataReducer,
+  finance: financeReducer,
+  charges: chargesReducer,
 })
 
 export default reducer

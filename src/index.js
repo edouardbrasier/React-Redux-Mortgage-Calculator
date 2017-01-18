@@ -22,3 +22,7 @@ const render = () => ReactDOM.render(
 
 render()
 store.subscribe(render)
+
+// //Now you can access the store from window.store in the console like this:
+// window.store = store;
+// window.store.dispatch({ type: 'PRINCIPAL_CHANGE', payload: 123456 })
