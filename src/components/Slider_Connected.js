@@ -6,16 +6,12 @@ import { bindActionCreators  } from 'redux'
 import { connect } from 'react-redux'
 
 class Slider_Connected extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      firstSlider:120000, //how to remove this static value??
-    };
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
 
   handleFirstSlider = (event, value) => {
     this.props.principalChangeAction(value);
-    this.setState({firstSlider: value});
   };
 
   render() {

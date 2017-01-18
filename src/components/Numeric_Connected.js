@@ -9,13 +9,9 @@ import { connect } from 'react-redux'
 
 class Numeric_Connected extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      //how to remove this static value
-      input:120000,
-    };
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
 
   handleInput = (event, value) => {
     this.props.principalChangeAction(value);
