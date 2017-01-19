@@ -6,7 +6,7 @@ import './index.css'
 import{ createStore}  from 'redux'
 import { Provider } from 'react-redux'
 
-import Main from './containers/main'
+import Main from './containers/Main_Container'
 import reducer from './reducers/allreducers'
 //maybe use that https://cdn.rawgit.com/hongymagic/react-number-input/master/demos/demo0/index.html
 

@@ -1,10 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
+// import Slider_Connected from '../components/Slider_Connected'
+// import Numeric_Connected from '../components/Numeric_Connected'
 
-import Slider_Connected from '../components/Slider_Connected'
-import Numeric_Connected from '../components/Numeric_Connected'
-
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import Slider_Input from '../components/Numeric_Connected'
 import injectTapEventPlugin from 'react-tap-event-plugin'
 // Needed for onTouchTap http://stackoverflow.com/a/34015469/988941
 injectTapEventPlugin()
@@ -13,8 +12,8 @@ class Slider_Numeric_Connected extends React.Component {
 
   render() { return (
     <div>
-    <Numeric_Connected/>
     <MuiThemeProvider>
+    <Numeric_Connected/>
     <Slider_Connected/>
     </MuiThemeProvider>
     <div>The monthly cost is {this.props.Monthly_Cost_Initial}</div>

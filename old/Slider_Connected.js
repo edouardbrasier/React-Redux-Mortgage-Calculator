@@ -6,9 +6,6 @@ import { bindActionCreators  } from 'redux'
 import { connect } from 'react-redux'
 
 class Slider_Connected extends Component {
-  // constructor(props) {
-  //   super(props);
-  // }
 
   handleFirstSlider = (event, value) => {
     this.props.principalChangeAction(value);
