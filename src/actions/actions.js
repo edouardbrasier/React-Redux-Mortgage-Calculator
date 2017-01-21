@@ -1,6 +1,7 @@
 //  Actions
 export const Actions = {
-  PRINCIPAL_CHANGE: 'PRINCIPAL_CHANGE',
+  PROPERTY_CHANGE: 'PROPERTY_CHANGE',
+  DEPOSIT_CHANGE: 'DEPOSIT_CHANGE',
   TYPE_CHANGE: 'TYPE_CHANGE',
   INITIAL_PERIOD_CHANGE: 'INITIAL_PERIOD_CHANGE',
   MORTGAGE_TERM_CHANGE: 'MORTGAGE_TERM_CHANGE',
@@ -9,13 +10,19 @@ export const Actions = {
 };
 
 
-export function principalChange(payload) {
+export function propertyChange(payload) {
   return {
-    type: 'PRINCIPAL_CHANGE',
+    type: 'PROPERTY_CHANGE',
     payload
   }
 }
 
+export function depositChange(payload) {
+  return {
+    type: 'DEPOSIT_CHANGE',
+    payload
+  }
+}
 //  Action Creators
 //const principal_change = createAction(Actions.PRINCIPAL_CHANGE);
 // const type_change = createAction(Actions.TYPE_CHANGE);

@@ -4,8 +4,9 @@ import InitialState from '../constants/initial'
 
 
 const financeReducer = (state = InitialState.finance, action) => {
-  let Principal,Type, Initial_Period, Mortgage_Term, Interest_Initial, Interest_Then
-  Principal= state.Principal
+  let Property,Principal,Deposit,Type, Initial_Period, Mortgage_Term, Interest_Initial, Interest_Then
+  Property= state.Property
+  Deposit= state.Deposit
   Type= state.Type
   Initial_Period= state.Initial_Period
   Mortgage_Term= state.Mortgage_Term
@@ -13,9 +14,13 @@ const financeReducer = (state = InitialState.finance, action) => {
   Interest_Then= state.Interest_Then
 
   switch (action.type) {
-    case Actions.PRINCIPAL_CHANGE:
+
+    case Actions.PROPERTY_CHANGE:
+    Property = action.payload
     //console.log('this was called', action.payload)
-    Principal = action.payload
+    break
+    case Actions.DEPOSIT_CHANGE:
+    Deposit = action.payload
     break
     case Actions.TYPE_CHANGE:
     Type =  action.payload
@@ -35,8 +40,10 @@ const financeReducer = (state = InitialState.finance, action) => {
     default:
   }
 
-  Principal = Math.min (Principal,state.Static_Data.Max_Principal)
-  Principal = Math.max (Principal,state.Static_Data.Min_Principal)
+  Property = Math.min (Property,state.Static_Data.Max_Property)
+  Property = Math.max (Property,state.Static_Data.Min_Property)
+  Deposit = Math.min (Deposit,state.Static_Data.Max_Property)
+  Deposit = Math.max (Deposit,0)
   let Monthly_Cost_Initial_temp1,Monthly_Cost_Initial_temp2,Monthly_Cost_Then_temp1,Monthly_Cost_Then_temp2
   let Monthly_Cost_Initial,Monthly_Cost_Then
 
@@ -45,6 +52,7 @@ const financeReducer = (state = InitialState.finance, action) => {
   let Yearly_Interest=[]
   let Yearly_Capital=[]
 
+  Principal= Property-Deposit;
   if (Type === "Capital"){ 
     //removed this condition because the first part is always the same if Initial period or not following not needed //if (Type == "Capital" && Initial_Period ==0){
     if (Interest_Initial > 0 ){
@@ -128,7 +136,7 @@ const financeReducer = (state = InitialState.finance, action) => {
     }
   }
 
-  return { ...state,  Principal,Type, Initial_Period, Mortgage_Term, Interest_Initial, Interest_Then, Monthly_Cost_Initial, Monthly_Cost_Then, Principal_Remaining, Yearly_Interest,Yearly_Capital }
+  return { ...state,  Principal,Property, Deposit, Type, Initial_Period, Mortgage_Term, Interest_Initial, Interest_Then, Monthly_Cost_Initial, Monthly_Cost_Then, Principal_Remaining, Yearly_Interest,Yearly_Capital }
 }
 
 const chargesReducer = (state = InitialState.charges, action) => {

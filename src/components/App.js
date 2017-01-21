@@ -8,83 +8,73 @@ import injectTapEventPlugin from 'react-tap-event-plugin'
 // Needed for onTouchTap http://stackoverflow.com/a/34015469/988941
 injectTapEventPlugin()
 
-function myFormat(num) {
-    //return '£'+ num ;
-    return num ;
-}
-
 export default class App extends Component {
-  handleFirstSlider = (event, value) => {
-    this.props.principalChangeAction(value);
+  handleFirstSliderProperty = (event, value) => {
+    this.props.propertyChangeAction(value);
   };
 
-  handleInput = (event, value) => {
-    //.console.log('hahaha',typeof value)
-    value= 1 + value;
-    value = value.slice( 1 );
-    this.props.principalChangeAction(value);
+  handleInputProperty = (event, value) => {
+    this.props.propertyChangeAction(value);
     this.setState({input: value});
   };
 
-//is a render need here???
+  handleFirstSliderDeposit = (event, value) => {
+    this.props.depositChangeAction(value);
+  };
+
+  handleInputDeposit = (event, value) => {
+    this.props.depositChangeAction(value);
+    this.setState({input: value});
+  };
   render() {
     return (
       <div>
       <p>
       <span>{'The property price: '}</span>
-      <span>{this.props.Principal}</span>
+      <span><NumberFormat value={this.props.Property.toFixed(2)} displayType={'text'} thousandSeparator={true} prefix={'£'} /></span>
       </p>
       <NumericInput
-      min={this.props.Min_Principal}
-      max={this.props.Max_Principal}
-      step={this.props.Step_Principal}
-      value={this.props.Principal}
-      format={myFormat}
+      min={this.props.Min_Property}
+      max={this.props.Max_Property}
+      step={this.props.Step_Property}
+      value={this.props.Property}
       precision={2}
-      onChange={this.handleInput}
+      onChange={this.handleInputProperty}
       />
       <MuiThemeProvider>
       <Slider
-      min={this.props.Min_Principal}
-      max={this.props.Max_Principal}
-      step={this.props.Step_Principal}
-      value={this.props.Principal}
-      onChange={this.handleFirstSlider}
+      min={this.props.Min_Property}
+      max={this.props.Max_Property}
+      step={this.props.Step_Property}
+      value={this.props.Property}
+      onChange={this.handleFirstSliderProperty}
       />
       </MuiThemeProvider>
-      <div>The monthly cost is <NumberFormat value={this.props.Monthly_Cost_Initial.toFixed(2)} displayType={'text'} thousandSeparator={true} prefix={'£'} />
-      </div>
+
+      <p>
+      <span>{'Your Deposit: '}</span>
+      <span><NumberFormat value={this.props.Deposit.toFixed(2)} displayType={'text'} thousandSeparator={true} prefix={'£'} /></span>
+      </p>
+      <NumericInput
+      min={this.props.Min_Deposit}
+      max={this.props.Max_Deposit}
+      step={this.props.Step_Deposit}
+      value={this.props.Deposit}
+      precision={2}
+      onChange={this.handleInputDeposit}
+      />
+      <MuiThemeProvider>
+      <Slider
+      min={this.props.Min_Deposit}
+      max={this.props.Max_Deposit}
+      step={this.props.Step_Deposit}
+      value={this.props.Deposit}
+      onChange={this.handleFirstSliderDeposit}
+      />
+      </MuiThemeProvider>
+
+      <div>The monthly cost is <NumberFormat value={this.props.Monthly_Cost_Initial.toFixed(2)} displayType={'text'} thousandSeparator={true} prefix={'£'} /></div>
       </div>
     );
   }
 }
-
-//attemps to have only one render function
-// const App = (props) =>
-//       <div>
-//       <p>
-//       <span>{'The property price: '}</span>
-//       <span>{this.props.Principal}</span>
-//       </p>
-//       <NumericInput
-//       min={this.props.Min_Principal}
-//       max={this.props.Max_Principal}
-//       step={this.props.Step_Principal}
-//       value={this.props.Principal}
-//       onChange={this.handleInput}
-//       />
-//       <MuiThemeProvider>
-//       <Slider
-//       min={this.props.Min_Principal}
-//       max={this.props.Max_Principal}
-//       step={this.props.Step_Principal}
-//       value={this.props.Principal}
-//       onChange={this.handleFirstSlider}
-//       />
-//       </MuiThemeProvider>
-//       <div>The monthly cost is {this.props.Monthly_Cost_Initial}
-//       </div>
-//       </div>
-//
-//
-//  export default App
