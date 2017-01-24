@@ -23,12 +23,39 @@ export function depositChange(payload) {
     payload
   }
 }
-//  Action Creators
-//const principal_change = createAction(Actions.PRINCIPAL_CHANGE);
-// const type_change = createAction(Actions.TYPE_CHANGE);
-// const inital_period_change = createAction(Actions.INITIAL_PERIOD_CHANGE);
-// const mortgage_term_change = createAction(Actions.MORTGAGE_TERM_CHANGE);
-// const interest_initial_change = createAction(Actions.INTEREST_INITIAL_CHANGE);
-// const interest_then_change = createAction(Actions.INTEREST_THEN_CHANGE);
+
+export function Mortgage_TermChange(payload) {
+  return {
+    type: 'MORTGAGE_TERM_CHANGE',
+    payload
+  }
+}
+export function typeChange(payload) {
+  return {
+    type: 'TYPE_CHANGE',
+    payload
+  }
+}
+
+export function Interest_InitialChange(payload) {
+  return {
+    type: 'INTEREST_INITIAL_CHANGE',
+    payload
+  }
+}
+
+export function Interest_ThenChange(payload) {
+  return {
+    type: 'INTEREST_THEN_CHANGE',
+    payload
+  }
+}
+
+export function Initial_PeriodChange(payload) {
+  return {
+    type: 'INITIAL_PERIOD_CHANGE',
+    payload
+  }
+}
 
 export default Actions
