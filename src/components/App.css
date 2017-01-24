@@ -1,0 +1,15 @@
+#PropertyContainer, #DepositContainer {
+  display: flex;                  /* establish flex container */
+  flex-direction: row;            /* default value; can be omitted */
+}
+
+#PropertyContainer > div {
+width: 30%;
+}
+#DepositContainer > div {
+width: 30%;
+}
+
+.hidden-div {
+  display: none;
+  }
