@@ -91,7 +91,7 @@ export default class App extends Component {
 
 
       <p>
-      <span>{'The property price test: '}</span>
+      <span>{'The property price: '}</span>
       <span><NumberFormat value={this.props.Property.toFixed(2)} displayType={'text'} thousandSeparator={true} prefix={'£'} /></span>
       </p>
       <NumericInput
