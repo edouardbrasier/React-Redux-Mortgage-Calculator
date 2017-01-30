@@ -15,7 +15,8 @@
     "react-numeric-input": "^2.0.7",
     "react-redux": "^5.0.2",
     "react-tap-event-plugin": "^2.0.1",
-    "redux": "^3.6.0"
+    "redux": "^3.6.0",
+    "react-chart-line": "https://github.com/edouardbrasier/npm-react-chart-line/tarball/ae2e49e22e1c205da36f83f51b520681361d0dbb"
   },
   "scripts": {
     "start": "react-scripts start",
