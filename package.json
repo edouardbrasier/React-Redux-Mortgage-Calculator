@@ -17,7 +17,7 @@
     "react-tap-event-plugin": "^2.0.1",
     "redux": "^3.6.0",
     "chart.js": "^2.4.0",
-    "react-chart-line": "https://github.com/edouardbrasier/npm-react-chart-line/tarball/7618b6b177e08f1c7d2168d93797a0c49b847188"
+    "react-chart-line": "https://github.com/edouardbrasier/npm-react-chart-line/tarball/d3137f5d619b06d88481f309ac0682c6a80a4a8f"
   },
   "scripts": {
     "start": "react-scripts start",
