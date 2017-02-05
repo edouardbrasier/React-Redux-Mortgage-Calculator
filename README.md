@@ -9,6 +9,7 @@ The banner allows to use the app offline.
 
 Install:
 npm install
+
 npm run
 
 Firebase hosting:
