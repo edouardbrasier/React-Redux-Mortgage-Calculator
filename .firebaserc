@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "dev": "reduxmortgage",
+    "default": "reduxmortgage"
+  }
+}

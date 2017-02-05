@@ -1,15 +1,51 @@
-#PropertyContainer, #DepositContainer {
-  display: flex;                  /* establish flex container */
-  flex-direction: row;            /* default value; can be omitted */
-}
-
-#PropertyContainer > div {
-  width: 30%;
-}
-#DepositContainer > div {
-  width: 30%;
-}
-
 .hidden-div {
   display: none;
+}
+
+.card {
+  padding:0.625em 1%;
+}
+
+.numericinput {
+  font-size:3.0vh;
+  width: 25.00 em;
+  max-width: 90vw;
+}
+
+.numericinputshort {
+  font-size:3.0vh;
+  width: 10.500em;
+  max-width: 90vw;
+}
+
+.text {
+  width:25.00 em;
+  max-width: 90vw;
+  font-size:3.0vh;
+}
+
+.slider {
+  width: 900px;
+  max-width: 90vw;
+}
+
+.TextResults {
+  background-color: yellow;
+  font-size:3.0vh;
+}
+
+.TextResultsdiv {
+  width:50.00 em;
+  max-width: 90vw;
+  vertical-align: middle;
+  line-height: 40px;
+}
+
+.Container {
+  width:100%;
+  display: -webkit-flex; /* Safari */
+  -webkit-flex-wrap: wrap; /* Safari 6.1+ */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }

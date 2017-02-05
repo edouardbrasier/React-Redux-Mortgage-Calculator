@@ -1,13 +1,15 @@
 {
-  "short_name": "PWA Mortgage Redux",
-  "name": "PWA Mortgage Redux",
+  "short_name": "Mortgage",
+  "name": "PWA_Mortgage_Redux",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "HomeICO.ico",
       "sizes": "192x192",
       "type": "image/png"
     }
   ],
+  "background_color": "#2196F3",
+  "theme_color": "#2196F3",
   "start_url": "./",
   "display": "standalone"
 }

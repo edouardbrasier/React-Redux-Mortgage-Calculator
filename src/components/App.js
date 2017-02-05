@@ -1,8 +1,7 @@
-//hsbc is very innaccurate //http://www.hsbc.co.uk/1/2/mortgages/repayment-calculator
-//http://www.1728.org/mortpmts.htm
-
 import React,{Component} from 'react'
 import Slider from 'material-ui/Slider'
+import AppBar from 'material-ui/AppBar'
+import {Card, CardText} from 'material-ui/Card'
 import NumericInput from 'react-numeric-input'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import NumberFormat from 'react-number-format'
@@ -14,7 +13,6 @@ import rcl from "react-chart-line"
 import './App.css'
 
 import injectTapEventPlugin from 'react-tap-event-plugin'
-// Needed for onTouchTap http://stackoverflow.com/a/34015469/988941
 injectTapEventPlugin()
 
 export default class App extends Component {
@@ -53,7 +51,6 @@ export default class App extends Component {
     this.setState({value});
   }
 
-
   handleChangeType = (event, index, value) => {
     this.setState({value});
     this.props.typeChangeAction(value);
@@ -64,7 +61,6 @@ export default class App extends Component {
     this.props.graphtypeChangeAction(value);
   }
 
-
   handleInputInterest_Initial = (event, value) => {
     this.props.Interest_InitialChangeAction(value);
     this.setState({input: value});
@@ -74,27 +70,36 @@ export default class App extends Component {
     this.props.Interest_ThenChangeAction(value);
     this.setState({input: value});
   };
-
   render() {
-
-     //only show interest rate then and monthly cost after initial period if there is an initial period
+    //only show interest rate then and monthly cost after initial period if there is an initial period
     const toggle_initial_period= this.props.Initial_Period>0 ? false : true;
-    const Class_initial_period= this.props.Initial_Period>0 ? '' : 'hidden-div';
-    //only show the chart if the mortgage type is capital reapyment and if the ammount borrowed is more than 0
+    const Class_initial_period= this.props.Initial_Period>0 ? 'text' : 'hidden-div';
+    const Class_initial_period_results= this.props.Initial_Period>0 ? 'TextResults' : 'hidden-div';
+    //only show graph if there is capital to repay
     const Class_Capital= this.props.Type ==='Capital repayment' &&  this.props.Monthly_Cost_Initial > 0 ? '' : 'hidden-div';
     return (
-
-      <div>
-      <div id="PropertyContainer">
-
-      <div>
-
-
-      <p>
-      <span>{'The property price: '}</span>
-      <span><NumberFormat value={this.props.Property.toFixed(2)} displayType={'text'} thousandSeparator={true} prefix={'£'} /></span>
-      </p>
+      <div >
+      <MuiThemeProvider>
+      <AppBar
+      title="Mortgage"
+      iconClassNameRight="muidocs-icon-navigation-expand-more"
+      />
+      </MuiThemeProvider>
+      <div className="card">
+      <MuiThemeProvider>
+      <Card >
+      <CardText>
+      <div className="Container">
+      <div className="notgrouped">
+      <div className="text">
+      <span className="Textinput">{'The property price: '}
+      <NumberFormat value={this.props.Property.toFixed(2)} displayType={'text'} thousandSeparator={true} prefix={'£'} />
+      </span>
+      </div>
+      <div className="numeric">
       <NumericInput
+      className="numericinput"
+      inputMode="numeric"
       min={this.props.Min_Property}
       max={this.props.Max_Property}
       step={this.props.Step_Property}
@@ -104,32 +109,31 @@ export default class App extends Component {
       onChange={this.handleInputProperty}
       />
       </div>
-
-      <div>
-
+      </div>
+      <div className="slider">
       <MuiThemeProvider>
       <Slider
+      className="sliderinput"
       min={this.props.Min_Property}
       max={this.props.Max_Property}
       step={this.props.Step_Property}
       value={this.props.Property}
-      format={myFormatCurrency}
       onChange={this.handleFirstSliderProperty}
       />
       </MuiThemeProvider>
       </div>
       </div>
-
-
-
-      <div id="DepositContainer">
-
-      <div>
-      <p>
-      <span>{'Your Deposit: '}</span>
-      <span><NumberFormat value={this.props.Deposit.toFixed(2)} displayType={'text'} thousandSeparator={true} prefix={'£'} /></span>
-      </p>
+      <div className="Container">
+      <div className="notgrouped">
+      <div className="text">
+      <span className="Textinput">{'The deposit is: '}
+      <NumberFormat value={this.props.Deposit.toFixed(2)} displayType={'text'} thousandSeparator={true} prefix={'£'} />
+      </span>
+      </div>
+      <div className="numeric">
       <NumericInput
+      className="numericinput"
+      inputMode="numeric"
       min={this.props.Min_Deposit}
       max={this.props.Max_Deposit}
       step={this.props.Step_Deposit}
@@ -139,10 +143,11 @@ export default class App extends Component {
       onChange={this.handleInputDeposit}
       />
       </div>
-
-      <div>
+      </div>
+      <div className="slider">
       <MuiThemeProvider>
       <Slider
+      className="sliderinput"
       min={this.props.Min_Deposit}
       max={this.props.Max_Deposit}
       step={this.props.Step_Deposit}
@@ -151,32 +156,23 @@ export default class App extends Component {
       />
       </MuiThemeProvider>
       </div>
-
       </div>
-
-      <div id="Mortgage_TermContainer">
-      {'Repayment period '}
-      <MuiThemeProvider>
-      <DropDownMenu  maxHeight={300} value={this.props.Mortgage_Term} onChange={this.handleChangeMortgage_Term}>
-      {this.props.years}
-      </DropDownMenu>
+      </CardText>
+      </Card>
       </MuiThemeProvider>
       </div>
-
-      <div id="Initial_PeriodContainer">
-      {'Initial period '}
+      <div className="card">
       <MuiThemeProvider>
-      <DropDownMenu maxHeight={300} value={this.props.Initial_Period} onChange={this.handleChangeInitial_Period}>
-      {this.props.initialyears}
-      </DropDownMenu>
-      </MuiThemeProvider>
-      </div>
-
-
-      <div id="TypeContainer">
+      <Card >
+      <CardText>
+      <div className="Container">
+      <div>
+      <div className="text">
       {'Mortgage Type '}
+      </div>
+      <div className="menu">
       <MuiThemeProvider>
-      <SelectField
+      <SelectField style={{fontSize: "3.0vh"}}
       value={this.props.Type}
       onChange={this.handleChangeType}
       >
@@ -185,9 +181,48 @@ export default class App extends Component {
       </SelectField>
       </MuiThemeProvider>
       </div>
-
-      <div id="Interest_InitialContainer">
-      {'Interest Rate '}<NumericInput
+      </div>
+      <div>
+      <div className="text">
+      {'Repayment period '}
+      </div>
+      <div className="menu">
+      <MuiThemeProvider>
+      <DropDownMenu style={{fontSize: "3.0vh"}}  maxHeight={300} value={this.props.Mortgage_Term} onChange={this.handleChangeMortgage_Term}>
+      {this.props.years}
+      </DropDownMenu>
+      </MuiThemeProvider>
+      </div>
+      </div>
+      <div>
+      <div className="text">
+      {'Initial period '}
+      </div>
+      <div className="menu">
+      <MuiThemeProvider>
+      <DropDownMenu style={{fontSize: "3.0vh"}} maxHeight={300} value={this.props.Initial_Period} onChange={this.handleChangeInitial_Period}>
+      {this.props.initialyears}
+      </DropDownMenu>
+      </MuiThemeProvider>
+      </div>
+      </div>
+      </div>
+      </CardText>
+      </Card>
+      </MuiThemeProvider>
+      </div>
+      <div className="card">
+      <MuiThemeProvider>
+      <Card >
+      <CardText>
+      <div className="Container">
+      <div className="notgrouped">
+      <div className="text">
+      {'Initial interest Rate '}
+      </div>
+      <div className="numericshort">
+      <NumericInput
+      className="numericinputshort"
       min={0}
       max={100}
       step={0.01}
@@ -197,10 +232,14 @@ export default class App extends Component {
       onChange={this.handleInputInterest_Initial}
       />
       </div>
-
-      <div id="Interest_ThenContainer" className={Class_initial_period}>
-      Then
+      </div>
+      <div className="notgrouped">
+      <div className={Class_initial_period}>
+      {'Interest Rate Then'}
+      </div>
+      <div className={Class_initial_period}>
       <NumericInput
+      className="numericinputshort"
       min={0}
       max={100}
       step={0.01}
@@ -211,23 +250,41 @@ export default class App extends Component {
       onChange={this.handleInputInterest_Then}
       />
       </div>
-      <div>The monthly cost will be <NumberFormat value={this.props.Monthly_Cost_Initial.toFixed(2)} displayType={'text'} thousandSeparator={true} prefix={'£'} /></div>
-      <div className={Class_initial_period} >Then after the end of the initial period the cost will be <NumberFormat value={this.props.Monthly_Cost_Then.toFixed(2)} displayType={'text'} thousandSeparator={true} prefix={'£'} /></div>
-
-      <div id="GraphTypeContainer">
-      {'Graph Type '}
+      </div>
+      <div className="TextResultsdiv">
+      <span className="TextResults">{'The monthly cost is'} <NumberFormat value={this.props.Monthly_Cost_Initial.toFixed(2)} displayType={'text'} thousandSeparator={true} prefix={'£'} /></span>
+      <span className={Class_initial_period_results}>
+      {' then '} <NumberFormat value={this.props.Monthly_Cost_Then.toFixed(2)} displayType={'text'} thousandSeparator={true} prefix={'£'} />{' after initial period '}</span>
+      </div>
+      </div>
+      </CardText>
+      </Card>
+      </MuiThemeProvider>
+      </div>
+      <div className="card">
       <MuiThemeProvider>
-      <SelectField
+      <Card >
+      <CardText className={Class_Capital}>
+      <div className="text">
+      {'Graph Type '}
+      </div>
+      <div className="menu">
+      <MuiThemeProvider>
+      <SelectField style={{fontSize: "3.0vh"}}
       value={this.props.Graph_Type}
       onChange={this.handleChangeGraph_Type}
       >
-      <MenuItem value={'Monthly Equity Gain'} primaryText='Monthly Equity Gain' />
-      <MenuItem value={'Remaining Capital'} primaryText='Remaining Capital' />
+      <MenuItem value={'Monthly Equity Gain'} primaryText='Monthly Equity Gain'/>
+      <MenuItem value={'Remaining Capital'} primaryText='Remaining Capital'/>
       </SelectField>
       </MuiThemeProvider>
       </div>
-      <div className={Class_Capital}  >
-      <rcl.ChartLine data={this.props.chart} />
+      <div className={Class_Capital}>
+      <rcl.ChartLine data={this.props.chart}/>
+      </div>
+      </CardText>
+      </Card>
+      </MuiThemeProvider>
       </div>
       </div>
     );
@@ -237,6 +294,7 @@ export default class App extends Component {
 function myFormatCurrency(num) {
   return num + ' £';
 }
+
 function myFormatPercentage(num) {
   return num + '%';
 }
